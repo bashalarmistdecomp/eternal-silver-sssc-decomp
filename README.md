@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/img/logo.png" width="482" alt="Eternal Silver SSSC Decomp">
+</p>
+
 # Eternal Silver SSSC decomp
 
 A matching decompilation of *Lunar: Silver Star Story Complete* (PlayStation,
@@ -16,15 +20,22 @@ or it fails.
 ## The three programs
 
 Each program is one executable image and has a tree of its own, named by its
-serial as Sony names it.
+serial as Sony names it:
+
+- **Main executable**, [`decomp/SLUS_006.28/`](decomp/SLUS_006.28/): the game
+  itself. Both game discs boot it.
+- **Overlay**, [`decomp/SLUS_006.28-MENU/`](decomp/SLUS_006.28-MENU/):
+  `MENU.BIN`, the movie player the game loads over itself before each movie.
+- **Bonus disc**, [`decomp/SLUS_009.21/`](decomp/SLUS_009.21/): "The Making of
+  Lunar", which also holds the hidden Lords of Lunar minigame.
 
 <!-- progress: begin. `make status` writes what is between these two lines. -->
-| Tree | What it is | All functions | Functions to decompile | All code bytes | Code bytes to decompile |
-|---|---|---|---|---|---|
-| `decomp/SLUS_006.28/` | The game's main executable. Both game discs boot it. | ![97.20% functions in C](https://img.shields.io/badge/functions%20in%20C-97.20%25-brightgreen) | ![100.00% functions in C](https://img.shields.io/badge/functions%20in%20C-100.00%25-brightgreen) | ![99.58% bytes in C](https://img.shields.io/badge/bytes%20in%20C-99.58%25-brightgreen) | ![100.00% bytes in C](https://img.shields.io/badge/bytes%20in%20C-100.00%25-brightgreen) |
-| `decomp/SLUS_006.28-MENU/` | `MENU.BIN`, the movie player the game loads over itself before each movie. | ![91.67% functions in C](https://img.shields.io/badge/functions%20in%20C-91.67%25-green) | ![97.06% functions in C](https://img.shields.io/badge/functions%20in%20C-97.06%25-brightgreen) | ![79.52% bytes in C](https://img.shields.io/badge/bytes%20in%20C-79.52%25-yellowgreen) | ![94.72% bytes in C](https://img.shields.io/badge/bytes%20in%20C-94.72%25-green) |
-| `decomp/SLUS_009.21/` | The bonus disc, "The Making of Lunar", which also holds the hidden Lords of Lunar minigame. | ![34.41% functions in C](https://img.shields.io/badge/functions%20in%20C-34.41%25-orange) | ![95.21% functions in C](https://img.shields.io/badge/functions%20in%20C-95.21%25-brightgreen) | ![8.12% bytes in C](https://img.shields.io/badge/bytes%20in%20C-8.12%25-red) | ![15.52% bytes in C](https://img.shields.io/badge/bytes%20in%20C-15.52%25-red) |
-| All three |  | ![87.93% functions in C](https://img.shields.io/badge/functions%20in%20C-87.93%25-green) | ![99.67% functions in C](https://img.shields.io/badge/functions%20in%20C-99.67%25-brightgreen) | ![82.03% bytes in C](https://img.shields.io/badge/bytes%20in%20C-82.03%25-green) | ![90.68% bytes in C](https://img.shields.io/badge/bytes%20in%20C-90.68%25-green) |
+| Program | All functions | Functions to decompile | All code bytes | Code bytes to decompile |
+|---|:---:|:---:|:---:|:---:|
+| Main executable | ![All functions: 97.20% in C](https://img.shields.io/badge/97.20%25-brightgreen?style=for-the-badge) | ![Functions to decompile: 100.00% in C](https://img.shields.io/badge/100.00%25-brightgreen?style=for-the-badge) | ![All code bytes: 99.58% in C](https://img.shields.io/badge/99.58%25-brightgreen?style=for-the-badge) | ![Code bytes to decompile: 100.00% in C](https://img.shields.io/badge/100.00%25-brightgreen?style=for-the-badge) |
+| Overlay | ![All functions: 91.67% in C](https://img.shields.io/badge/91.67%25-green?style=for-the-badge) | ![Functions to decompile: 97.06% in C](https://img.shields.io/badge/97.06%25-brightgreen?style=for-the-badge) | ![All code bytes: 79.52% in C](https://img.shields.io/badge/79.52%25-yellowgreen?style=for-the-badge) | ![Code bytes to decompile: 94.72% in C](https://img.shields.io/badge/94.72%25-green?style=for-the-badge) |
+| Bonus disc | ![All functions: 34.41% in C](https://img.shields.io/badge/34.41%25-orange?style=for-the-badge) | ![Functions to decompile: 95.21% in C](https://img.shields.io/badge/95.21%25-brightgreen?style=for-the-badge) | ![All code bytes: 8.12% in C](https://img.shields.io/badge/8.12%25-red?style=for-the-badge) | ![Code bytes to decompile: 15.52% in C](https://img.shields.io/badge/15.52%25-red?style=for-the-badge) |
+| All three | ![All functions: 87.93% in C](https://img.shields.io/badge/87.93%25-green?style=for-the-badge) | ![Functions to decompile: 99.67% in C](https://img.shields.io/badge/99.67%25-brightgreen?style=for-the-badge) | ![All code bytes: 82.03% in C](https://img.shields.io/badge/82.03%25-green?style=for-the-badge) | ![Code bytes to decompile: 90.68% in C](https://img.shields.io/badge/90.68%25-green?style=for-the-badge) |
 
 Each badge is a share in C, counted by functions or by code bytes. *All*
 counts all of a program's code. *To decompile* leaves out what is not
@@ -151,7 +162,7 @@ What is left for the main program and its movie-player overlay, as of
 | Struct leftovers | main | a few types | Types for the 0xC00-byte block of records (`CardSave.records`, `g_GameSaveBlock`) and the load buffer at `0x801CFB00`; 29 `unk_` fields; a few offset forms the counter does not find (the sprite sheet directory row, `BtlRecordInit`). |
 | `_stacksize` | main | 1 global | The start-up object refers to the word at `0x800B8714` by that name; it is still `D_800B8714`. |
 | `__main` | main | 1 routine | Still data to the tree: making it a routine moves the start of the program's code by eight bytes in the linker script. |
-| Okumura's routines | main | 5 rows | The 1991 edition of the book has not been seen. If its text or names differ from the 2018 files, the five rows and `MTH_mysqrt`'s name need another look. |
+| Okumura's routines | main | 5 rows | Assumed to be from the book's 1991 edition, the one the developers could have had; checked against and named after its 2018 edition, whose C files are public. Compare them if a copy of the 1991 edition turns up: `MTH_mysqrt`'s name in particular is the 2018 file's. |
 
 Settled by the owner's rulings, and so not work unless new evidence turns
 up: the 61 game functions left unnamed, the 106 Sony statics in the main
@@ -172,12 +183,34 @@ and the asset research. This repository starts from that one's state on
 that. [HISTORY.md](HISTORY.md) is the timeline reconstructed from the old
 one.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/progress-timeline-dark.svg">
+  <img src="docs/img/progress-timeline-light.svg" alt="How the main executable was matched, Jul 23 to Oct 10, 2026: the share of its functions and of its code bytes matched by each day, and the functions landed each day by method. The list below the chart says what it shows.">
+</picture>
+
+The chart dates each of the main executable's 2,253 functions to decompile
+by the commit in the old repository that retired its assembly file; 29 were
+C before the first. The work went in four phases:
+
+1. **Jul 23: first matches.** The compiler is pinned down as GCC 2.8.1 at
+   `-O2 -G8`, and the first 67 functions match, one at a time.
+2. **Aug 2 to 10: drafts in bulk.** Splitting the code again uncovers 515
+   functions glued inside others. m2c drafts them, rules repair its drafts,
+   and 401 land in batches; a ladder of searches ending in decomp-permuter
+   mutates each near-miss until its bytes match. That makes 30% of the
+   functions but only 11% of the bytes: the small functions went first.
+3. **Oct 2 to 7: a local LLM and a LAN fleet.** A 27-billion-parameter model
+   on one desktop GPU drafts what m2c could not, and the searches spread to a
+   laptop. 57% of the functions, but still 26% of the bytes.
+4. **Oct 8 to 10: one agent per function.** Searching stalls on functions
+   longer than about 100 instructions, so Claude Code agents read the
+   assembly and write the C, one function each. 959 functions and 73% of the
+   code land in two days, 854 of them written this way.
+
 The tools that find a function's C (the conversion loop, the search for a
 matching form, the emulator harness) are not here; they will be released
 later as station-tools, a custom decomp toolkit. Some comments in the C and
-the configuration were written beside them and still name them, along with
-other paths of the old repository: none of those paths is in this
-repository.
+the configuration were written beside them and still name them.
 
 Eternal Silver, a reimplementation of the game's engine by the same author,
 is transcribed from this C and this specification.

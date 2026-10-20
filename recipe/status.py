@@ -55,12 +55,9 @@ BEGIN = "<!-- progress: begin. `make status` writes what is between these two li
 END = "<!-- progress: end -->"
 
 PROGRAMS = [
-    ("SLUS_006.28", "Main executable",
-     "The game's main executable. Both game discs boot it."),
-    ("SLUS_006.28-MENU", "Overlay",
-     "`MENU.BIN`, the movie player the game loads over itself before each movie."),
-    ("SLUS_009.21", "Bonus disc",
-     'The bonus disc, "The Making of Lunar", which also holds the hidden Lords of Lunar minigame.'),
+    ("SLUS_006.28", "Main executable"),
+    ("SLUS_006.28-MENU", "Overlay"),
+    ("SLUS_009.21", "Bonus disc"),
 ]
 FIELDS = ["functions", "in_c", "never", "copies", "open", "text", "text_c", "text_never",
           "text_copies", "image", "image_c"]
@@ -129,7 +126,6 @@ def todo(r):
 
 
 HEADS = ("All functions", "Functions to decompile", "All code bytes", "Code bytes to decompile")
-LABELS = ("functions in C", "functions in C", "bytes in C", "bytes in C")
 
 
 def shares(r):
@@ -139,13 +135,13 @@ def shares(r):
             share(r["text_c"], r["text"]), share(r["text_c"], text))
 
 
-def badge(label, value):
+def badge(head, value):
+    """A large badge showing only the share; its column's head says what it is."""
     color = next(c for floor, c in ((95, "brightgreen"), (80, "green"), (60, "yellowgreen"),
                                     (40, "yellow"), (20, "orange"), (0, "red")) if value >= floor)
-    def esc(s):
-        return s.replace("-", "--").replace("_", "__").replace("%", "%25").replace(" ", "%20")
     message = f"{value:.2f}%"
-    return f"![{message} {label}](https://img.shields.io/badge/{esc(label)}-{esc(message)}-{color})"
+    return (f"![{head}: {message} in C](https://img.shields.io/badge/"
+            f"{message.replace('%', '%25')}-{color}?style=for-the-badge)")
 
 
 def n(x):
@@ -153,11 +149,9 @@ def n(x):
 
 
 def overview(rows, tot, today):
-    out = ["| Tree | What it is | " + " | ".join(HEADS) + " |", "|---|---|" + "---|" * len(HEADS)]
-    for tree, what, r in [(f"`decomp/{serial}/`", what, r) for (serial, _, what), r in rows] + [
-            ("All three", "", tot)]:
-        out.append(f"| {tree} | {what} | "
-                   + " | ".join(badge(l, v) for l, v in zip(LABELS, shares(r))) + " |")
+    out = ["| Program | " + " | ".join(HEADS) + " |", "|---|" + ":---:|" * len(HEADS)]
+    for (_, name), r in rows + [(("", "All three"), tot)]:
+        out.append(f"| {name} | " + " | ".join(badge(h, v) for h, v in zip(HEADS, shares(r))) + " |")
     out += ["",
             "Each badge is a share in C, counted by functions or by code bytes. *All*",
             "counts all of a program's code. *To decompile* leaves out what is not",
@@ -209,7 +203,7 @@ def history(today, rows):
     for h in old:
         last[h["serial"]] = h
     new = []
-    for (serial, _, _), r in rows:
+    for (serial, _), r in rows:
         row = {"date": today, "serial": serial, **{k: str(r[k]) for k in FIELDS}}
         prev = last.get(serial)
         if prev is None or any(prev[k] != row[k] for k in FIELDS):
@@ -223,7 +217,7 @@ def history(today, rows):
 
 
 def history_table(hist):
-    names = {s: name for s, name, _ in PROGRAMS}
+    names = dict(PROGRAMS)
     out = ["| Date | Program | " + " | ".join(HEADS) + " |", "|---|---|" + "---:|" * len(HEADS)]
     for h in sorted(hist, key=lambda h: (h["date"], list(names).index(h["serial"]))):
         r = {k: int(h[k]) for k in FIELDS}
@@ -239,7 +233,7 @@ def by_unit(rows, tot, unit):
     out = ["| Program | " + ("Functions" if unit == "functions" else "Code bytes")
            + " | To decompile | In C | Share of all | Share of those to decompile |",
            "|---|---:|---:|---:|---:|---:|"]
-    for ((serial, name, _), r) in rows + [(("", "All three", ""), tot)]:
+    for ((serial, name), r) in rows + [(("", "All three"), tot)]:
         label = f"{name} (`{serial}`)" if serial else name
         s = shares(r)
         out.append(f"| {label} | {n(r[whole])} | {n(todo(r)[i])} | {n(r[in_c])} | "
@@ -296,14 +290,14 @@ def page(rows, tot, today, hist):
         "| Program | Still assembly | Assembly in the original | Copies of Sony's code | Open work |",
         "|---|---:|---:|---:|---:|",
     ]
-    for (serial, name, _), r in rows:
+    for (serial, name), r in rows:
         left = r["text"] - r["text_c"]
         opened = left - r["text_never"] - r["text_copies"]
         lines.append(f"| {name} | {n(r['never'] + r['copies'] + r['open'])} ({n(left)}) | "
                      f"{n(r['never'])} ({n(r['text_never'])}) | "
                      f"{n(r['copies'])} ({n(r['text_copies'])}) | {n(r['open'])} ({n(opened)}) |")
     lines.append("")
-    for (serial, name, _), r in rows:
+    for (serial, name), r in rows:
         lines.append(what_is_left(serial, name, r))
     lines += [
         "",
@@ -316,7 +310,7 @@ def page(rows, tot, today, hist):
         "| Program | Image bytes | From C | Share | Routines read as bytes | Jump tables | Data |",
         "|---|---:|---:|---:|---:|---:|---:|",
     ]
-    for (serial, name, _), r in rows:
+    for (serial, name), r in rows:
         k = r["by_kind"]
         lines.append(f"| {name} | {n(r['image'])} | {n(r['image_c'])} | "
                      f"{share(r['image_c'], r['image']):.2f}% | {n(k.get('routines', 0))} | "
@@ -354,7 +348,7 @@ def main():
     PAGE.write_text(page(rows, tot, today, hist))
     print(f"{'':18} {'functions in C':>23}   {'code bytes in C':>23}")
     print(f"{'':18} {'all':>10} {'to decompile':>12}   {'all':>10} {'to decompile':>12}")
-    for (serial, name, _), r in rows + [(("all three", "", ""), tot)]:
+    for (serial, name), r in rows + [(("all three", ""), tot)]:
         s = shares(r)
         print(f"{serial:18} {s[0]:9.2f}% {s[1]:11.2f}%   {s[2]:9.2f}% {s[3]:11.2f}%")
     print(f"wrote README.md (overview), {PAGE.relative_to(ROOT)}, {HISTORY.relative_to(ROOT)}")

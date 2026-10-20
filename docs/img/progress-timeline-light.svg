@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 764" width="1000" height="764" role="img" aria-labelledby="t d">
+<title id="t">How the main executable was matched, Jul 23 to Oct 10, 2026</title>
+<desc id="d">Two charts on one time axis. Top: the share of the main executable's functions and code bytes matched at the end of each day with landings, reaching 30% of functions and 11% of bytes by Aug 10, 57% and 26% by Oct 7, and 100% on Oct 10, with 50 points of code on Oct 8 alone. Bottom: functions landed per day, stacked by what produced the match; Oct 8 and Oct 9 landed 514 and 445, most by agents reading the assembly. No landings for 9 days after Jul 23 and for 52 days after Aug 10.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.title { font-size: 25px; font-weight: 700; fill: #1a2133; }
+.sub { font-size: 16px; fill: #3e475c; }
+.lg { font-size: 15px; fill: #3e475c; }
+.cap { font-size: 16px; font-weight: 600; fill: #3e475c; }
+.tick { font-size: 14px; fill: #5d6780; font-variant-numeric: tabular-nums; }
+.month { font-size: 13px; fill: #5d6780; letter-spacing: 0.1em; font-weight: 600; }
+.idle-t { font-size: 13px; fill: #5d6780; letter-spacing: 0.03em; }
+.series { font-size: 15px; fill: #3e475c; font-weight: 500; }
+.val { font-size: 15px; fill: #1a2133; font-weight: 700; }
+.total { font-size: 13px; fill: #3e475c; font-variant-numeric: tabular-nums; }
+.note { font-size: 15px; fill: #3e475c; }
+.note-b { fill: #1a2133; font-weight: 700; }
+.badge-t { font-size: 13px; fill: #1a2133; font-weight: 700; }
+.grid { stroke: #e3e7ef; stroke-width: 1; }
+.base { stroke: #a3abbd; stroke-width: 1; }
+.brk { stroke: #a3abbd; stroke-width: 1.5; }
+</style>
+<rect width="1000" height="764" rx="12" fill="#ffffff"/>
+<text x="32" y="46" class="title">Automation took the small functions. Reading took the code.</text>
+<text x="32" y="74" class="sub">The main executable, Jul 23 to Oct 10, 2026: the share matched at the end of each day with</text>
+<text x="32" y="95" class="sub">landings (top), and the functions landed each day, by what produced the match (bottom).</text>
+<rect x="32" y="117" width="13" height="13" rx="3" fill="#3987e5"/>
+<text x="53" y="128" class="lg">Agent reading the asm</text>
+<rect x="332" y="117" width="13" height="13" rx="3" fill="#d95926"/>
+<text x="353" y="128" class="lg">Search ladder</text>
+<rect x="632" y="117" width="13" height="13" rx="3" fill="#199e70"/>
+<text x="653" y="128" class="lg">Agent-repaired draft</text>
+<rect x="32" y="141" width="13" height="13" rx="3" fill="#c98500"/>
+<text x="53" y="152" class="lg">Local LLM + ladder</text>
+<rect x="332" y="141" width="13" height="13" rx="3" fill="#d55181"/>
+<text x="353" y="152" class="lg">Batch m2c drafts</text>
+<rect x="632" y="141" width="13" height="13" rx="3" fill="#008300"/>
+<text x="653" y="152" class="lg">Special tools</text>
+<rect x="109.6" y="206" width="47.3" height="458" fill="#f1f3f8"/>
+<text class="idle-t" transform="translate(138.2,569) rotate(-90)" text-anchor="middle">no landings · 9 days</text>
+<rect x="546.3" y="206" width="47.3" height="458" fill="#f1f3f8"/>
+<text class="idle-t" transform="translate(574.9,569) rotate(-90)" text-anchor="middle">no landings · 52 days</text>
+<text x="64" y="188" class="cap">Share matched</text>
+<line x1="64" x2="980" y1="404.0" y2="404.0" class="base"/>
+<text x="54" y="409.0" text-anchor="end" class="tick">0%</text>
+<line x1="64" x2="980" y1="356.5" y2="356.5" class="grid"/>
+<text x="54" y="361.5" text-anchor="end" class="tick">25%</text>
+<line x1="64" x2="980" y1="309.0" y2="309.0" class="grid"/>
+<text x="54" y="314.0" text-anchor="end" class="tick">50%</text>
+<line x1="64" x2="980" y1="261.5" y2="261.5" class="grid"/>
+<text x="54" y="266.5" text-anchor="end" class="tick">75%</text>
+<line x1="64" x2="980" y1="214.0" y2="214.0" class="grid"/>
+<text x="54" y="219.0" text-anchor="end" class="tick">100%</text>
+<path d="M64.0,402.7 L64.0,402.7 L106.6,399.7 L159.9,399.7 L202.5,392.9 L245.1,390.8 L287.7,387.9 L330.3,386.3 L372.9,384.7 L415.5,384.3 L458.1,383.8 L500.7,383.7 L543.3,383.5 L596.6,383.5 L639.2,380.8 L681.8,377.9 L724.4,377.4 L767.0,372.7 L809.6,361.6 L852.2,353.6 L894.8,257.9 L937.4,214.3 L980.0,214.0 L980.0,404 L64,404 Z" fill="#1a2133" opacity="0.07"/>
+<path d="M64.0,401.6 L64.0,401.6 L106.6,398.3 L159.9,398.3 L202.5,372.5 L245.1,366.3 L287.7,360.1 L330.3,355.5 L372.9,350.7 L415.5,348.8 L458.1,347.5 L500.7,347.2 L543.3,347.0 L596.6,347.0 L639.2,339.8 L681.8,332.7 L724.4,331.6 L767.0,320.9 L809.6,303.9 L852.2,295.0 L894.8,251.6 L937.4,214.1 L980.0,214.0" fill="none" stroke="#5d6780" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M64.0,402.7 L64.0,402.7 L106.6,399.7 L159.9,399.7 L202.5,392.9 L245.1,390.8 L287.7,387.9 L330.3,386.3 L372.9,384.7 L415.5,384.3 L458.1,383.8 L500.7,383.7 L543.3,383.5 L596.6,383.5 L639.2,380.8 L681.8,377.9 L724.4,377.4 L767.0,372.7 L809.6,361.6 L852.2,353.6 L894.8,257.9 L937.4,214.3 L980.0,214.0" fill="none" stroke="#1a2133" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="249.1" y="336.8" class="series">share of functions</text>
+<text x="249.1" y="374.3" class="series">share of code bytes</text>
+<text x="569.9" y="338.0" text-anchor="middle" class="val">30%</text>
+<text x="569.9" y="374.5" text-anchor="middle" class="val">11%</text>
+<circle cx="852.2" cy="295.0" r="5.5" fill="#5d6780" stroke="#ffffff" stroke-width="2"/>
+<circle cx="852.2" cy="353.6" r="5.5" fill="#1a2133" stroke="#ffffff" stroke-width="2"/>
+<text x="842.2" y="285.0" text-anchor="end" class="val">57%</text>
+<text x="862.2" y="373.6" class="val">26%</text>
+<circle cx="980.0" cy="214.0" r="5.5" fill="#1a2133" stroke="#ffffff" stroke-width="2"/>
+<text x="840.2" y="219.7" text-anchor="end" class="note"><tspan class="note-b">Oct 8:</tspan> +50 points<tspan x="840.2" dy="20">of code in one day</tspan></text>
+<text x="64" y="448" class="cap">Functions landed per day</text>
+<line x1="64" x2="980" y1="664.0" y2="664.0" class="base"/>
+<text x="54" y="669.0" text-anchor="end" class="tick">0</text>
+<line x1="64" x2="980" y1="629.5" y2="629.5" class="grid"/>
+<text x="54" y="634.5" text-anchor="end" class="tick">100</text>
+<line x1="64" x2="980" y1="594.9" y2="594.9" class="grid"/>
+<text x="54" y="599.9" text-anchor="end" class="tick">200</text>
+<line x1="64" x2="980" y1="560.4" y2="560.4" class="grid"/>
+<text x="54" y="565.4" text-anchor="end" class="tick">300</text>
+<line x1="64" x2="980" y1="525.8" y2="525.8" class="grid"/>
+<text x="54" y="530.8" text-anchor="end" class="tick">400</text>
+<line x1="64" x2="980" y1="491.3" y2="491.3" class="grid"/>
+<text x="54" y="496.3" text-anchor="end" class="tick">500</text>
+<path d="M73.4,664.0 L73.4,654.9 Q73.4,650.9 77.4,650.9 L93.2,650.9 Q97.2,650.9 97.2,654.9 L97.2,664.0 Z" fill="#199e70"/>
+<text x="85.3" y="643.9" text-anchor="middle" class="total">38</text>
+<text x="85.3" y="686" text-anchor="middle" class="tick">23</text>
+<rect x="169.2" y="654.0" width="23.9" height="10.0" fill="#199e70"/>
+<path d="M169.2,652.0 L169.2,559.9 Q169.2,555.9 173.2,555.9 L189.1,555.9 Q193.1,555.9 193.1,559.9 L193.1,652.0 Z" fill="#d55181"/>
+<text x="181.2" y="548.9" text-anchor="middle" class="total">307</text>
+<text x="181.2" y="686" text-anchor="middle" class="tick">2</text>
+<rect x="211.8" y="661.5" width="23.9" height="2.5" fill="#199e70"/>
+<path d="M211.8,659.5 L211.8,640.7 Q211.8,636.7 215.8,636.7 L231.7,636.7 Q235.7,636.7 235.7,640.7 L235.7,659.5 Z" fill="#d55181"/>
+<text x="223.8" y="629.7" text-anchor="middle" class="total">73</text>
+<text x="223.8" y="686" text-anchor="middle" class="tick">3</text>
+<rect x="254.4" y="647.1" width="23.9" height="16.9" fill="#d95926"/>
+<rect x="254.4" y="639.2" width="23.9" height="5.9" fill="#199e70"/>
+<path d="M254.4,637.2 L254.4,636.0 Q254.4,634.7 255.7,634.7 L277.1,634.7 Q278.3,634.7 278.3,636.0 L278.3,637.2 Z" fill="#d55181"/>
+<text x="266.4" y="627.7" text-anchor="middle" class="total">73</text>
+<text x="266.4" y="686" text-anchor="middle" class="tick">4</text>
+<rect x="297.0" y="661.5" width="23.9" height="2.5" fill="#d95926"/>
+<rect x="297.0" y="651.6" width="23.9" height="7.9" fill="#199e70"/>
+<path d="M297.0,649.6 L297.0,644.2 Q297.0,640.2 301.0,640.2 L316.9,640.2 Q320.9,640.2 320.9,644.2 L320.9,649.6 Z" fill="#d55181"/>
+<text x="309.0" y="633.2" text-anchor="middle" class="total">55</text>
+<text x="309.0" y="686" text-anchor="middle" class="tick">5</text>
+<rect x="339.7" y="650.2" width="23.9" height="13.8" fill="#d95926"/>
+<path d="M339.7,648.2 L339.7,645.2 Q339.7,642.3 342.6,642.3 L360.6,642.3 Q363.5,642.3 363.5,645.2 L363.5,648.2 Z" fill="#199e70"/>
+<text x="351.6" y="635.3" text-anchor="middle" class="total">57</text>
+<text x="351.6" y="686" text-anchor="middle" class="tick">6</text>
+<path d="M382.3,664.0 L382.3,660.0 Q382.3,656.1 386.2,656.1 L402.1,656.1 Q406.1,656.1 406.1,660.0 L406.1,664.0 Z" fill="#d55181"/>
+<text x="394.2" y="649.1" text-anchor="middle" class="total">23</text>
+<text x="394.2" y="686" text-anchor="middle" class="tick">7</text>
+<rect x="424.9" y="659.2" width="23.9" height="4.8" fill="#d95926"/>
+<path d="M424.9,657.2 L424.9,655.9 Q424.9,654.7 426.1,654.7 L447.5,654.7 Q448.7,654.7 448.7,655.9 L448.7,657.2 Z" fill="#199e70"/>
+<text x="436.8" y="647.7" text-anchor="middle" class="total">15</text>
+<text x="436.8" y="686" text-anchor="middle" class="tick">8</text>
+<path d="M467.5,664.0 L467.5,662.8 Q467.5,661.5 468.7,661.5 L490.1,661.5 Q491.3,661.5 491.3,662.8 L491.3,664.0 Z" fill="#d95926"/>
+<text x="479.4" y="654.5" text-anchor="middle" class="total">3</text>
+<text x="479.4" y="686" text-anchor="middle" class="tick">9</text>
+<path d="M510.1,664.0 L510.1,662.8 Q510.1,661.5 511.3,661.5 L532.7,661.5 Q533.9,661.5 533.9,662.8 L533.9,664.0 Z" fill="#199e70"/>
+<text x="522.0" y="654.5" text-anchor="middle" class="total">3</text>
+<text x="522.0" y="686" text-anchor="middle" class="tick">10</text>
+<rect x="605.9" y="646.0" width="23.9" height="18.0" fill="#d95926"/>
+<path d="M605.9,644.0 L605.9,636.6 Q605.9,632.6 609.9,632.6 L625.8,632.6 Q629.8,632.6 629.8,636.6 L629.8,644.0 Z" fill="#c98500"/>
+<text x="617.9" y="625.6" text-anchor="middle" class="total">85</text>
+<text x="617.9" y="686" text-anchor="middle" class="tick">2</text>
+<rect x="648.5" y="655.0" width="23.9" height="9.0" fill="#d95926"/>
+<path d="M648.5,653.0 L648.5,637.0 Q648.5,633.0 652.5,633.0 L668.4,633.0 Q672.4,633.0 672.4,637.0 L672.4,653.0 Z" fill="#c98500"/>
+<text x="660.5" y="626.0" text-anchor="middle" class="total">84</text>
+<text x="660.5" y="686" text-anchor="middle" class="tick">3</text>
+<rect x="691.1" y="659.9" width="23.9" height="4.1" fill="#d95926"/>
+<path d="M691.1,657.9 L691.1,656.6 Q691.1,655.4 692.4,655.4 L713.7,655.4 Q715.0,655.4 715.0,656.6 L715.0,657.9 Z" fill="#c98500"/>
+<text x="703.1" y="648.4" text-anchor="middle" class="total">14</text>
+<text x="703.1" y="686" text-anchor="middle" class="tick">4</text>
+<rect x="733.7" y="661.5" width="23.9" height="2.5" fill="#3987e5"/>
+<rect x="733.7" y="646.0" width="23.9" height="13.5" fill="#d95926"/>
+<rect x="733.7" y="641.5" width="23.9" height="2.5" fill="#199e70"/>
+<path d="M733.7,639.5 L733.7,614.5 Q733.7,610.5 737.7,610.5 L753.6,610.5 Q757.6,610.5 757.6,614.5 L757.6,639.5 Z" fill="#c98500"/>
+<text x="745.7" y="603.5" text-anchor="middle" class="total">126</text>
+<text x="745.7" y="686" text-anchor="middle" class="tick">5</text>
+<rect x="776.3" y="640.5" width="23.9" height="23.5" fill="#d95926"/>
+<rect x="776.3" y="628.8" width="23.9" height="9.7" fill="#199e70"/>
+<rect x="776.3" y="600.6" width="23.9" height="26.3" fill="#c98500"/>
+<path d="M776.3,598.6 L776.3,592.2 Q776.3,588.2 780.3,588.2 L796.2,588.2 Q800.2,588.2 800.2,592.2 L800.2,598.6 Z" fill="#008300"/>
+<text x="788.3" y="581.2" text-anchor="middle" class="total">202</text>
+<text x="788.3" y="686" text-anchor="middle" class="tick">6</text>
+<rect x="819.0" y="660.9" width="23.9" height="3.1" fill="#3987e5"/>
+<rect x="819.0" y="646.1" width="23.9" height="12.8" fill="#d95926"/>
+<rect x="819.0" y="634.1" width="23.9" height="10.0" fill="#199e70"/>
+<rect x="819.0" y="623.8" width="23.9" height="8.3" fill="#c98500"/>
+<path d="M819.0,621.8 L819.0,620.6 Q819.0,619.3 820.2,619.3 L841.6,619.3 Q842.8,619.3 842.8,620.6 L842.8,621.8 Z" fill="#008300"/>
+<text x="830.9" y="612.3" text-anchor="middle" class="total">106</text>
+<text x="830.9" y="686" text-anchor="middle" class="tick">7</text>
+<rect x="861.6" y="517.5" width="23.9" height="146.5" fill="#3987e5"/>
+<rect x="861.6" y="503.4" width="23.9" height="12.1" fill="#d95926"/>
+<rect x="861.6" y="493.8" width="23.9" height="7.6" fill="#199e70"/>
+<rect x="861.6" y="487.7" width="23.9" height="4.1" fill="#c98500"/>
+<path d="M861.6,485.7 L861.6,482.1 Q861.6,478.4 865.2,478.4 L881.8,478.4 Q885.4,478.4 885.4,482.1 L885.4,485.7 Z" fill="#008300"/>
+<text x="873.5" y="471.4" text-anchor="middle" class="total">514</text>
+<text x="873.5" y="686" text-anchor="middle" class="tick">8</text>
+<rect x="904.2" y="515.5" width="23.9" height="148.5" fill="#3987e5"/>
+<rect x="904.2" y="509.0" width="23.9" height="4.5" fill="#d95926"/>
+<rect x="904.2" y="504.5" width="23.9" height="2.5" fill="#199e70"/>
+<path d="M904.2,502.5 L904.2,501.2 Q904.2,500.0 905.4,500.0 L926.8,500.0 Q928.0,500.0 928.0,501.2 L928.0,502.5 Z" fill="#c98500"/>
+<text x="916.1" y="493.0" text-anchor="middle" class="total">445</text>
+<text x="916.1" y="686" text-anchor="middle" class="tick">9</text>
+<path d="M946.8,664.0 L946.8,662.8 Q946.8,661.5 948.0,661.5 L969.4,661.5 Q970.6,661.5 970.6,662.8 L970.6,664.0 Z" fill="#199e70"/>
+<text x="958.7" y="654.5" text-anchor="middle" class="total">1</text>
+<text x="958.7" y="686" text-anchor="middle" class="tick">10</text>
+<text x="85.3" y="710" text-anchor="middle" class="month">JUL</text>
+<text x="351.6" y="710" text-anchor="middle" class="month">AUGUST</text>
+<text x="788.3" y="710" text-anchor="middle" class="month">OCTOBER</text>
+<line x1="68.0" x2="102.6" y1="734" y2="734" class="brk"/>
+<circle cx="85.3" cy="734" r="11" fill="#ffffff" stroke="#a3abbd" stroke-width="1.5"/>
+<text x="85.3" y="738.5" text-anchor="middle" class="badge-t">1</text>
+<line x1="163.9" x2="539.3" y1="734" y2="734" class="brk"/>
+<circle cx="351.6" cy="734" r="11" fill="#ffffff" stroke="#a3abbd" stroke-width="1.5"/>
+<text x="351.6" y="738.5" text-anchor="middle" class="badge-t">2</text>
+<line x1="600.6" x2="848.2" y1="734" y2="734" class="brk"/>
+<circle cx="724.4" cy="734" r="11" fill="#ffffff" stroke="#a3abbd" stroke-width="1.5"/>
+<text x="724.4" y="738.5" text-anchor="middle" class="badge-t">3</text>
+<line x1="856.2" x2="976.0" y1="734" y2="734" class="brk"/>
+<circle cx="916.1" cy="734" r="11" fill="#ffffff" stroke="#a3abbd" stroke-width="1.5"/>
+<text x="916.1" y="738.5" text-anchor="middle" class="badge-t">4</text>
+</svg>

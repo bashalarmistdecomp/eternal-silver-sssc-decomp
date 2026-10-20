@@ -971,9 +971,10 @@ inside `map_display` that nothing refers to, and `main_bootstrap` and
   The 106 other functions named for their address are Sony's private
   parts of proven library members (the statics, under "Known, and not
   yet given").
-- **Okumura's routines**: the 1991 edition of the book has not been seen.
-  If its text or its names differ from the 2018 files, the five rows and
-  `MTH_mysqrt`'s name in particular need another look.
+- **Okumura's routines**: assumed to be from the book's 1991 edition, the
+  one the developers could have had; checked against and named after its
+  2018 edition, whose C files are public. Compare them if a copy of the 1991
+  edition turns up: `MTH_mysqrt`'s name in particular is the 2018 file's.
 - **Data**: four waves named 874 globals; the game's own C calls 97% of
   its uses of a global by name (2026-10-18). Thirteen of those names were
   places inside a record with a name of its own (`g_BtlWalkBlockTarget`, +4
