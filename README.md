@@ -49,10 +49,11 @@ make programs                               # build all three and compare
 make status                                 # optional: build them and update the progress figures
 ```
 
-## This repository holds none of the game
+## What is not in this repository
 
-It is meant to be safe to publish, so three things a build needs are not in
-it, and each comes from somewhere else:
+None of the game's files are in this repository: no disc image, no file from
+the disc, no program image. A build needs three things that are not here, and
+each comes from somewhere else:
 
 - **The program images.** `decomp/<serial>/expected/code.bin` is what a tree
   is compared with. `recipe/extract.py` cuts it out of your own disc and
