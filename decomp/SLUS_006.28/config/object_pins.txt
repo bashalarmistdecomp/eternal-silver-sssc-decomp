@@ -1,0 +1,40 @@
+# SDK objects pinned in SLUS_006.28's image: the checked data behind the `object-member`
+# evidence kind (docs/spec/code/hand-assembly.md; admitted by the owner's ruling of
+# 2026-10-09).
+#
+# A row says: this object file of a Sony library lies whole in expected/code.bin at this
+# address, and it was ASSEMBLED, not compiled. One row per line:
+#
+#   <library file>  <member>  payload=<sha256>  text=<bytes>  at=<address>  mask=<TYPE:BITS,...>
+#
+#   library file  the Sony library the object comes from, as the PSY-Q SDK lays it out
+#                 (psyq/lib/); the path only says where to look, the hash is the identity.
+#   member        the object's name inside the library (its 8-character member header).
+#   payload       sha256 of the member's SN "LNK" object payload, as libobj.split_lib cuts it.
+#   text          length of the object's .text in bytes.
+#   at            the address in this program's image where that .text begins.
+#   mask          how a relocated word is compared: for each LNK patch-record type the object
+#                 carries, the bits of the word the linker fills (hex). Those bits are blanked
+#                 on both sides and every other bit must be equal. HI16 and LO16 fill the low
+#                 16 bits, J26 the low 26. A row may not mask more than the type fills, and an
+#                 object with a patch type the row does not list refuses the row.
+#
+# The checker (station-tools) re-measures EVERY row on EVERY run: the member's payload hash in the library
+# file, the .text length, and the .text against the image at `at`, word for word under `mask`.
+# A row that fails is printed as REFUSED and grants nothing (exit 1). A row that verifies
+# grants `object-member:<LIB>/<MEMBER>` to every function inside its range only if
+#   - at least one function inside the range carries one of the five primary kinds, and
+#   - the tree reproduces NO function inside the range from C (its calibration run
+#     fails on that: it is the kind's negative control).
+#
+# Hand-written: add a row only together with the measurement that produced it, and never to
+# make a function leave a queue.
+#
+# LIBCARD.LIB member PATCH (SDK 4.6; the library file is 6148 bytes, sha256 3310af56...c8ba,
+# the member's .text 136 words, sha256 9a476017...49c6). Measured 2026-10-09 (107/107 words
+# without a patch record equal, 29/29 patched words equal outside the field, 12/12 `.text + K`
+# fields equal the value computed from the base). Its seven pieces: _patch_card_info
+# _patch_card_info (reg, insn), func_800A169C and func_800A16C8 (the two patch bodies, no
+# symbol), func_800A170C (two stubs, tail-jump), _patch_card _patch_card (reg),
+# _patch_card2 _patch_card2 (reg), _copy_memcard_patch _copy_memcard_patch.
+psyq/lib/LIBCARD.LIB  PATCH  payload=176617a053ebf011779ffdd5f17b37d5537af811c96273f6cb45267791c96bea  text=0x220  at=0x800A1658  mask=HI16:0000FFFF,LO16:0000FFFF,J26:03FFFFFF

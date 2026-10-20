@@ -1,0 +1,5 @@
+# Functions that get the ASPSX load-delay nop before a bare-symbol store
+# reusing the loaded register — the extern-gp hazard maspsx cannot see
+# (recipe/delayfill.py, load_hazard_nop). Per-function opt-in,
+# same dual-source contract as cc272.txt / no_delayed_branch.txt.
+sound_noise_step

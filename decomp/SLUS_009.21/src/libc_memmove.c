@@ -1,0 +1,9 @@
+/* PSY-Q 4.5 libc, member memmove.o: memmove. The first split had it in
+   main_aak.c.
+   The build must stay byte-matching. */
+
+#include "include_asm.h"
+#include "psyq_types.h"
+
+/* func_80131250 */
+INCLUDE_ASM("asm/nonmatchings/main", memmove);

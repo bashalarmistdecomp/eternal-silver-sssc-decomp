@@ -1,0 +1,86 @@
+# Functions that were ASSEMBLY in the original program. GENERATED: never edit a row.
+#
+# Each function below carries evidence, measured on the expected image, that it was never C:
+# an instruction or a register use the C compiler never emits, or membership of a pinned SDK
+# object file that holds such a function (the evidence kinds of
+# docs/spec/code/hand-assembly.md). It stays an INCLUDE_ASM stub for good: no C
+# body is taken for it, and it is counted on its own line, outside the work
+# still to do. A function with NO row here is conversion work, however small or
+# odd it looks.
+#
+# The list is generated and checked by station-tools, a custom decomp toolkit to be released later.
+# A row appears or goes only when the evidence does: the tool's rules or the pinned SDK
+# objects (config/object_pins.txt, the `object-member` kind) changed, or a function with
+# evidence was split, merged or renamed. Never add a row to take a function out of a queue.
+#
+# program        SLUS_006.28
+# image sha256   d2db512db6410809740116bde0a1b2c2b534ca03ad07db9b7e0a0e371cf9edcc
+# pinned objects LIBCARD.LIB/PATCH
+# functions      65
+#
+# function     address   evidence
+__SN_ENTRY_POINT     80013C4C  reg:$ra stored off $at, insn:addi, reg:$ra loaded off $ra, not-code:+0xAC..+0xB8
+InitHeap  8008B388  bios-thunk:A0:39
+FlushCache  8008B398  bios-thunk:A0:44
+_bu_init  8008B3A8  bios-thunk:A0:70
+EnterCriticalSection  8008B3B8  insn:syscall
+ExitCriticalSection  8008B3C8  insn:syscall
+open  8008B3D8  bios-thunk:B0:32
+lseek  8008B3E8  bios-thunk:B0:33
+read  8008B3F8  bios-thunk:B0:34
+write  8008B408  bios-thunk:B0:35
+close  8008B418  bios-thunk:B0:36
+Krom2RawAdd  8008B428  bios-thunk:B0:51
+GPU_cw  8008E7B8  bios-thunk:A0:49
+func_8008FE08  8008FE08  not-code:+0x0, not-code:+0x4
+InitGeom  8008FE10  reg:$ra stored off $at, reg:$ra loaded off $ra, insn:mfc0, insn:mtc0, insn:ctc2 x7
+SquareRoot0  8008FE98  insn:mtc2, insn:mfc2, insn:sub x2, insn:addi x2
+SetColorMatrix  8008FF28  insn:ctc2 x5
+SetFarColor  8008FF58  insn:ctc2 x3
+SetGeomOffset  8008FF78  insn:ctc2 x2
+_patch_gte  8008FF98  reg:$ra stored off $at, reg:$ra loaded off $ra
+func_80090044  80090044  reg:$k0 x8, reg:$ra stored off $k0 x2, insn:mfc0 x3
+DeliverEvent  80090448  bios-thunk:B0:07
+ChangeClearPAD  80094BB8  bios-thunk:B0:5B
+ChangeClearRCnt  80094BC8  bios-thunk:C0:0A
+func_80095298  80095298  not-code:+0x0, not-code:+0x4
+_96_remove  800952A0  bios-thunk:A0:72
+ReturnFromException  800952B8  bios-thunk:B0:17
+ResetEntryInt  800952C8  bios-thunk:B0:18
+HookEntryInt  800952D8  bios-thunk:B0:19
+setjmp         800952E8  reg:$ra stored off $a0, reg:$gp stored off $a0, reg:$sp stored through memory
+longjmp  80095324  reg:$ra loaded off $a0, reg:$gp loaded off $a0, reg:$sp loaded through memory
+OpenEvent  8009DE58  bios-thunk:B0:08
+EnableEvent  8009DE68  bios-thunk:B0:0C
+WaitEvent  800A01C8  bios-thunk:B0:0A
+TestEvent  800A0538  bios-thunk:B0:0B
+InitPAD2  800A14B8  bios-thunk:B0:12
+StartPAD2  800A14C8  bios-thunk:B0:13
+StopPAD2  800A14D8  bios-thunk:B0:14
+PAD_init2  800A14E8  bios-thunk:B0:15
+SysEnqIntRP  800A14F8  bios-thunk:C0:02
+SysDeqIntRP  800A1508  bios-thunk:C0:03
+EnablePAD  800A1518  tail-jump:jr $t1
+DisablePAD  800A152C  tail-jump:jr $t1
+_patch_pad  800A1540  reg:$ra stored off $at, insn:addi x2, reg:$ra loaded off $ra
+_remove_ChgclrPAD  800A15B8  reg:$ra stored off $at, insn:addi, reg:$ra loaded off $ra
+InitCARD2  800A1628  bios-thunk:B0:4A
+StartCARD2  800A1638  bios-thunk:B0:4B
+StopCARD2  800A1648  bios-thunk:B0:4C
+_patch_card_info  800A1658  reg:$ra stored off $at, insn:addi, reg:$ra loaded off $ra, object-member:LIBCARD.LIB/PATCH
+func_800A169C  800A169C  object-member:LIBCARD.LIB/PATCH
+func_800A16C8  800A16C8  object-member:LIBCARD.LIB/PATCH
+func_800A170C  800A170C  tail-jump:jr $v0, object-member:LIBCARD.LIB/PATCH
+_patch_card  800A1734  reg:$ra stored off $at, reg:$ra loaded off $ra, object-member:LIBCARD.LIB/PATCH
+_patch_card2  800A17C8  reg:$ra stored off $at, reg:$ra loaded off $ra, object-member:LIBCARD.LIB/PATCH
+_copy_memcard_patch  800A1838  object-member:LIBCARD.LIB/PATCH
+_ExitCard  800A1878  reg:$ra stored off $at, reg:$ra loaded off $ra
+nextfile  800A3618  bios-thunk:B0:43
+erase  800A3628  bios-thunk:B0:45
+firstfile2  800A38D8  bios-thunk:B0:42
+_card_info  800A3998  bios-thunk:A0:AB
+_card_load  800A39A8  bios-thunk:A0:AC
+_card_write  800A39B8  bios-thunk:B0:4E
+_new_card  800A39C8  bios-thunk:B0:50
+CloseEvent  800A41D8  bios-thunk:B0:09
+_card_read  800A4CE8  bios-thunk:B0:4F

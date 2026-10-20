@@ -1,0 +1,38 @@
+/* Link fixups for the MENU.BIN overlay: the boot EXE's symbols it
+   references, which no object of this image defines (their lines in
+   symbol_addrs.txt carry `boot-exe`). One PROVIDE per symbol. */
+PROVIDE(pad_frame_step = 0x8001EE98);
+PROVIDE(debug_printf = 0x800216EC);
+PROVIDE(printf = 0x80021700);
+PROVIDE(fmt_sprintf = 0x80021714);
+PROVIDE(cd_file_search = 0x800234C4);
+PROVIDE(strcmp = 0x8008B788);
+PROVIDE(SetDispMask = 0x8008BB6C);
+PROVIDE(DrawSync = 0x8008BC04);
+PROVIDE(ClearImage = 0x8008BD88);
+PROVIDE(LoadImage = 0x8008BEB0);
+PROVIDE(MoveImage = 0x8008BF70);
+PROVIDE(PutDrawEnv = 0x8008C268);
+PROVIDE(PutDispEnv = 0x8008C434);
+PROVIDE(SetDefDrawEnv = 0x8008E878);
+PROVIDE(SetDefDispEnv = 0x8008E938);
+PROVIDE(StSetRing = 0x80090078);
+PROVIDE(CdReadyCallback = 0x800905F0);
+PROVIDE(CdControl = 0x80090604);
+PROVIDE(CdControlB = 0x80090874);
+PROVIDE(CdDataCallback = 0x80090A20);
+PROVIDE(CdRead2 = 0x800938C8);
+PROVIDE(StSetStream = 0x80093AC8);
+PROVIDE(StFreeRing = 0x80093B58);
+PROVIDE(StGetNext = 0x80093C48);
+PROVIDE(StCdInterrupt = 0x80093D28);
+PROVIDE(CdIntToPos = 0x80094818);
+PROVIDE(CdPosToInt = 0x8009491C);
+PROVIDE(VSync = 0x800949A8);
+PROVIDE(ResetCallback = 0x80094BD8);
+PROVIDE(DMACallback = 0x80094C38);
+PROVIDE(SpuSetCommonCDVolume = 0x800A0DC8);
+PROVIDE(SpuSetCommonCDMix = 0x800A0E28);
+PROVIDE(g_PadButtons = 0x800B8878);
+PROVIDE(g_MovieSkipAllowed = 0x800B8D18);
+PROVIDE(D_800E70CC = 0x800E70CC);

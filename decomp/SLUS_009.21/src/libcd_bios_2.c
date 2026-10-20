@@ -1,0 +1,20 @@
+/* PSY-Q 4.5 libcd, member bios.o, part 2 of 3: CD_initintr, CD_init. The
+   first split had it in main_ab.c. The tree compiles this run of the
+   member's functions with other flags than the runs beside it
+   (config/cc_flags.txt), so the member is in several files.
+   Built with -fno-delayed-branch @delay-fill (config/cc_flags.txt): this object puts the stack adjust BEFORE `jr $ra`.
+   The build must stay byte-matching. */
+
+
+
+#include "include_asm.h"
+#include "psyq_types.h"
+
+/* redistributed from the original TU (split decl repair) */
+s32 CD_init();
+
+/* func_80126884 */
+INCLUDE_ASM("asm/nonmatchings/main", CD_initintr);
+
+/* func_801268D0 */
+INCLUDE_ASM("asm/nonmatchings/main", CD_init);

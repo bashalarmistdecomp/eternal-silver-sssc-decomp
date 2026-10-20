@@ -1,0 +1,61 @@
+# Split config for SLUS_009.21 — The Making of Lunar (bonus disc).
+# Extended from a skeleton made by station-tools (2026-08-06) to a real
+# per-function split, same regime as decomp/SLUS_006.28/splat.yaml: once
+# asm/, src/ and config/program.ld start accumulating hand edits, a
+# re-run of splat REVERTS them — this file then goes back to being a
+# record, not a build step.
+#
+# Tools read three things from this file and re-type them nowhere:
+#   vram:      image load address (header t_addr)
+#   gp_value:  the program's _gp   (header gp0)
+#   the NAMES of the `c` subsegments — the program's segment set. git
+#              stores no empty directory, so asm/nonmatchings/<seg>/ cannot say a
+#              finished segment exists; its row here does.
+# Entry point (header pc0): 0x8011F064
+#
+# Layout MEASURED 2026-08-06: zero `jr $ra` and zero stack prologues outside the one code
+# region — this image is data / code / data, full stop.
+#   0x80010100-0x8010E1E0  data: 73 raw TIMs, then rodata strings/tables
+#   0x8010E1E0-0x801313A0  code, contiguous (last `jr $ra` 0x80131390;
+#                          zeros pad to 0x801313A0). First function is a
+#                          prologue-less leaf at 0x8010E1E0 — the round
+#                          0x8010E200 in earlier notes was wrong.
+#   0x801313A0-0x80135900  data: tables, glyph bitmaps, sdata (gp region)
+name: "Lunar: Silver Star Story Complete — The Making of (bonus disc) (SLUS_009.21)"
+sha1: 58b2052cc554e050489ed7729b92c858443e9baf
+options:
+  platform: psx
+  basename: program
+  # base_path is resolved relative to THIS FILE's directory in splat
+  # 0.39 (SSSC's yaml predates that semantic); build_path is relative
+  # to base_path and climbs back out so objects land at
+  # build/SLUS_009.21/... — one serial level, matching the Makefile's
+  # pattern rules.
+  base_path: .
+  build_path: ../../build/SLUS_009.21
+  asm_path: asm
+  src_path: src
+  target_path: expected/code.bin
+  compiler: GCC
+  # header gp0 is 0 — this program sets _gp in crt0, to 0x801351CC
+  # (measured 2026-08-06).
+  gp_value: 0x801351CC
+  symbol_addrs_path:
+    - config/symbol_addrs.txt
+  ld_script_path: config/program.ld
+  undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/undefined_syms_auto.txt
+  section_order: [.text, .data, .rodata, .bss]
+  create_asm_dependencies: true
+
+# ROM offset = VRAM - 0x80010100; file is 0x125800 bytes
+segments:
+  - name: main
+    type: code
+    start: 0x0
+    vram: 0x80010100
+    subsegments:
+      - [0x00000, data, image_bank]      # 0x80010100 — 73 raw TIMs + rodata
+      - [0xFE0E0, c, main]               # 0x8010E1E0 — all code, one segment
+      - [0x1212A0, data, tail_data]      # 0x801313A0 — tables + sdata
+  - [0x125800]

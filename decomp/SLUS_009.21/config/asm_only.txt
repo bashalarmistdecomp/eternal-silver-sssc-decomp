@@ -1,0 +1,54 @@
+# Functions that were ASSEMBLY in the original program. GENERATED: never edit a row.
+#
+# Each function below carries evidence, measured on the expected image, that it was never C:
+# an instruction or a register use the C compiler never emits, or membership of a pinned SDK
+# object file that holds such a function (the evidence kinds of
+# docs/spec/code/hand-assembly.md). It stays an INCLUDE_ASM stub for good: no C
+# body is taken for it, and it is counted on its own line, outside the work
+# still to do. A function with NO row here is conversion work, however small or
+# odd it looks.
+#
+# The list is generated and checked by station-tools, a custom decomp toolkit to be released later.
+# A row appears or goes only when the evidence does: the tool's rules or the pinned SDK
+# objects (config/object_pins.txt, the `object-member` kind) changed, or a function with
+# evidence was split, merged or renamed. Never add a row to take a function out of a queue.
+#
+# program        SLUS_009.21
+# image sha256   44175a26a0620b0e7ca6519aa694bceedff66ccb0754ae2b381ed2d185d60b7d
+# pinned objects none
+# functions      33
+#
+# function     address   evidence
+__SN_ENTRY_POINT  8011F064  reg:$ra stored off $at, insn:addi, reg:$ra loaded off $ra, not-code:+0xAC..+0xB8
+InitHeap  8011FE50  not-code:+0x10, not-code:+0x14, bios-thunk:A0:39
+_96_remove  8011FE68  bios-thunk:A0:72
+PAD_dr  8011FE80  bios-thunk:B0:16
+ReturnFromException  8011FE90  bios-thunk:B0:17
+ResetEntryInt  8011FEA0  bios-thunk:B0:18
+HookEntryInt  8011FEB0  bios-thunk:B0:19
+EnterCriticalSection  8011FEC0  insn:syscall
+ExitCriticalSection  8011FED0  insn:syscall
+ChangeClearPAD  8011FEE0  bios-thunk:B0:5B
+ChangeClearRCnt  8011FEF0  bios-thunk:C0:0A
+InitPAD2  80120200  bios-thunk:B0:12
+StartPAD2  80120210  bios-thunk:B0:13
+StopPAD2  80120220  bios-thunk:B0:14
+PAD_init2  80120230  bios-thunk:B0:15
+SysEnqIntRP  80120240  bios-thunk:C0:02
+SysDeqIntRP  80120250  bios-thunk:C0:03
+EnablePAD  80120260  tail-jump:jr $t1
+DisablePAD  80120274  tail-jump:jr $t1
+_patch_pad  80120288  reg:$ra stored off $at, insn:addi x2, reg:$ra loaded off $ra
+FlushCache  80120300  bios-thunk:A0:44
+_remove_ChgclrPAD  80120310  reg:$ra stored off $at, insn:addi, reg:$ra loaded off $ra
+Krom2RawAdd  801213B0  bios-thunk:B0:51
+GPU_cw  80124320  bios-thunk:A0:49
+DeliverEvent  80125160  bios-thunk:B0:07
+DecDCTvlcSize2  80129A10  insn:addi
+DecDCTvlc2  80129A40  insn:addi x30, insn:add x24, insn:sub x2
+OpenEvent  8012A060  bios-thunk:B0:08
+EnableEvent  8012A070  bios-thunk:B0:0C
+TestEvent  8012B8F0  bios-thunk:B0:0B
+write  801309C0  bios-thunk:B0:35
+setjmp  80131320  reg:$ra stored off $a0, reg:$gp stored off $a0, reg:$sp stored through memory
+longjmp  8013135C  reg:$ra loaded off $a0, reg:$gp loaded off $a0, reg:$sp loaded through memory

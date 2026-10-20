@@ -1,0 +1,2 @@
+# Externs whose .extern size is stripped (held far). Empty: under -G0
+# cc1 emits no small-data .extern at all.

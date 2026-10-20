@@ -1,0 +1,65 @@
+# Split config for MENU.BIN — the movie-player overlay of SLUS_006.28.
+#
+# A SECOND IMAGE of the same program: the boot EXE loads this file whole
+# to 0x80196000 (overlay_load_menu, docs/spec/code/subsystems/overlay.md)
+# before every movie and calls func_80196B54(n). It has no PS-X EXE
+# header, so the image is the disc file itself:
+#   expected/code.bin = the disc's MENU.BIN (recipe/extract.py)
+#   (byte-identical on disc 2, SLUS_008.99; sha1 below)
+# One tree describes one image, so the overlay is a sibling of
+# decomp/SLUS_006.28/, keyed `SLUS_006.28-MENU`; TARGET_SERIAL selects it
+# for make exactly as for any other tree.
+#
+# Same regime as the other trees: once asm/, src/ and config/program.ld
+# carry hand edits, re-running splat REVERTS them — this file is then a
+# record, not a build step.
+#
+# Tools read three things from this file and re-type them nowhere:
+#   vram:      image load address (overlay_load_menu's destination)
+#   gp_value:  the PROGRAM's _gp — the overlay runs under the boot EXE's
+#              $gp, but none of its code uses $gp (no instruction names
+#              it): the overlay was compiled -G0, cc_flags.txt says so
+#              per file, and every main-EXE global it reads is %hi/%lo
+#   the NAMES of the `c` subsegments — the image's segment set
+#
+# Layout MEASURED 2026-10-10 (overlay.md §Function map): rodata / code /
+# data, like the boot EXE.
+#   0x80196000-0x8019610C  rodata: build stamp + format strings
+#   0x8019610C-0x80196BDC  the game's movie player, 17 functions
+#   0x80196BDC-0x8019731C  Sony libpress object (MDEC), 17 functions
+#   0x8019731C-0x80197690  Sony libpress vlc object, 2 functions, asm
+#   0x80197690-0x801A8940  data: end-frame table, libpress tables, the
+#                          64 KB VLC table, the player's variables
+name: "Lunar SSSC MENU.BIN overlay (SLUS_006.28-MENU)"
+sha1: 166b669ceacf42fa09dda45a8c5974e2a0f28fe9
+options:
+  platform: psx
+  basename: program
+  base_path: .
+  build_path: ../../build/SLUS_006.28-MENU
+  asm_path: asm
+  src_path: src
+  target_path: expected/code.bin
+  compiler: GCC
+  gp_value: 0x800B8540
+  symbol_addrs_path:
+    - config/symbol_addrs.txt
+  ld_script_path: config/program.ld
+  undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/undefined_syms_auto.txt
+  section_order: [.text, .data, .rodata, .bss]
+  create_asm_dependencies: true
+
+# ROM offset = VRAM - 0x80196000; file is 0x12940 bytes
+segments:
+  - name: main
+    type: code
+    start: 0x0
+    vram: 0x80196000
+    subsegments:
+      - [0x00000, data, head_rodata]     # 0x80196000 — stamp + strings
+      - [0x0010C, c, movie]              # 0x8019610C — the game's player
+      - [0x00BDC, c, libpress]           # 0x80196BDC — Sony MDEC library
+      - [0x0131C, c, vlc]                # 0x8019731C — Sony libpress VLC (asm)
+      - [0x01690, data, tail_data]       # 0x80197690 — tables + variables
+  - [0x12940]

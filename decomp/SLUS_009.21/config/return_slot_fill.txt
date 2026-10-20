@@ -1,0 +1,19 @@
+# Functions whose RETURN delay slot holds the preceding instruction.
+# See recipe/delayfill.py, return_slot_fill().
+#
+# Per FUNCTION, never per file: @delay-fill refuses return slots outright
+# (filling them blanket-style reproduces the default epilogue), and enabling
+# it file-wide on this program's single TU was measured RED on 2026-08-08.
+#
+# All six are the accessor shape
+#     s32 f(s32 a) { s32 old = SYM; SYM = a; return old; }
+# which the target emits as  lw / lui $at / jr $ra / sw %lo($at).
+SetVideoMode
+CdSetDebug
+CdSyncCallback
+CdReadyCallback
+CdReadCallback
+StSetMask          # StSetMask
+SpuSetTransferMode          # SpuSetTransferMode
+DrawOTagEnv          # DrawOTagEnv   52/54 -> 53/54
+StoreImage2          # StoreImage2   56/59 -> 57/59

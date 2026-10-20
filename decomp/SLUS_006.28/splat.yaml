@@ -1,0 +1,87 @@
+# DO NOT RE-RUN SPLAT OVER THIS TREE without reading this first.
+#
+# `make` does not invoke splat: asm/, src/ and config/program.ld are all
+# generated artifacts that have since been hand-maintained. Segments have
+# been cut into one .c per original object, functions splat sliced at
+# round-number segment cuts have been healed, and data symbols have been
+# migrated out of the blobs. A fresh split reverts every one of
+# those. This file is kept ACCURATE so a future re-split starts from the
+# right paths — it is not a build step.
+#
+# Tools READ three things from this file and re-type them nowhere:
+#   vram:      image load address
+#   gp_value:  the program's _gp
+#   the NAMES of the `c` subsegments below — the program's SEGMENT SET.
+# A segment's directory under asm/nonmatchings/ is empty once its last
+# function is converted, and git stores no empty directory, so these rows
+# are the only tracked statement that such a segment exists: a clone of
+# this tree listed 9 of the 23 until 2026-10-09. To add, rename or drop a
+# segment, edit its row here; station-tools checks the list against src/ and asm/.
+# The OFFSETS predate the boundary heals: 22 of the 23 are no longer their
+# segment's first address (misc is off by 0x740). Only a Ghidra reading
+# pipeline (station-tools, to be released later) reads them, as approximate
+# group boundaries.
+#
+# Paths are relative to base_path, which is the PROGRAM's own tree; run
+# splat from the repo root. build_path climbs back out so objects land at
+# build/<serial>/src/... — one serial level, matching the Makefile's pattern
+# rules and the object names in config/program.ld.
+name: Lunar SSSC (SLUS_006.28)
+sha1: 900ce6a9dfa9563ef7e0a129602945d1303436d8
+options:
+  platform: psx
+  basename: program
+  base_path: decomp/SLUS_006.28
+  build_path: ../../build/SLUS_006.28
+  asm_path: asm
+  src_path: src
+  asset_path: ../../assets
+  target_path: expected/code.bin
+  compiler: GCC
+  gp_value: 0x800B8540
+  symbol_addrs_path:
+    - config/symbol_addrs.txt
+  ld_script_path: config/program.ld
+  undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/undefined_syms_auto.txt
+  section_order: [.text, .data, .rodata, .bss]
+  create_asm_dependencies: true
+
+# ROM offset = VRAM - 0x80011000
+# File is 0xA8000 bytes = 688128 bytes
+segments:
+  - name: main
+    type: code
+    start: 0x0
+    vram: 0x80011000
+    subsegments:
+      - [0x00000, data, boot_data]       # 0x80011000
+      - [0x02C4C, c, boot_init]          # 0x80013C4C
+      - [0x03000, c, rendering]          # 0x80014000
+      - [0x0A000, c, ui]                 # 0x8001B000
+      - [0x0F000, c, io]                 # 0x80020000
+      - [0x12000, c, cdrom_load]         # 0x80023000
+      - [0x15000, c, rendering2]         # 0x80026000
+      - [0x1B000, c, game_misc]          # 0x8002C000
+      - [0x21000, c, game_state]         # 0x80032000
+      - [0x2A000, c, field_engine]       # 0x8003B000
+      - [0x30000, c, rendering3]         # 0x80041000
+      - [0x34000, c, entity]             # 0x80045000
+      - [0x38000, c, misc]              # 0x80049000
+      - [0x47000, c, scripting]          # 0x80058000
+      - [0x59000, c, overworld]          # 0x8006A000
+      - [0x61000, c, battle]             # 0x80072000
+      - [0x6A000, c, menu]              # 0x8007B000
+      - [0x75000, c, save]              # 0x80086000
+      - [0x78000, c, data_mgmt]         # 0x80089000
+      - [0x79000, c, psyq_gpu]          # 0x8008A000
+      - [0x7E000, c, psyq_cd]           # 0x8008F000
+      - [0x82000, c, psyq_spu]          # 0x80093000
+      - [0x85000, c, psyq_math]         # 0x80096000
+      - [0x87000, c, psyq_misc]         # 0x80098000
+      # The text runs to 0x96D98 (0x800A7D98). psyq_misc's tail from 0x93CF8 is Sony's libpad
+      # (PADENTRY, PADMAIN, PADCMD, PADIF, PADPORTD, PADSEQD, WAITRC2: the SDK 4.5 release, the
+      # same code as 4.4's); the first split cut text from data at the round 0x94000 and left
+      # 0x2D98 bytes of that code in data_tables.
+      - [0x96D98, data, data_tables]     # 0x800A7D98
+  - [0xA8000]

@@ -1,0 +1,30 @@
+# far symbols (small data NOT in sdata) — none yet
+D_80132ADC
+# 2026-08-08: the accessor class (return_slot_fill.txt names the same
+# functions). The target reaches these with %hi/%lo, not $gp-relative, and
+# materialises the address TWICE per exchange rather than CSE-ing it.
+D_8013381C
+D_80133A4C
+D_80133A44
+D_80133A48
+D_801339AC
+D_801336C4
+D_80134E8C  @libspu_spu_3.c   # _spu_FsetRXX / _spu_FgetRXXa — target uses %hi/%lo
+D_80134EB4  @libspu_spu_3.c
+D_80133A68  @libcd_sys.c    # CdComstr command-string table
+D_80133AE8  @libcd_sys.c    # CdIntstr interrupt-string table
+D_80134E1C  @libspu_s_stm.c   # SpuSetTransferMode
+D_80134EA8  @libspu_s_stm.c
+D_80134E8C  @libspu_s_sccm.c   # SpuSetCommonCDMix
+# --- 2026-08-10 addressing diagnoses from the EXACT band sweep
+D_80132C6C  @libgpu_font.c
+D_801336CE  @libgpu_sys_1.c
+D_80133A50  @libcd_sys.c
+D_80133D4C  @libcd_bios_3.c
+# 2026-08-11: movie_picture_show — target stores D_801351D4 via lui $at/%hi-%lo
+# (asmdiff addressing hint; no other .c user; the attract-hold flag word)
+D_801351D4  @movie_play.c   # movie_play + movie_picture_show; the gp users live in castle.c (TU split 0x8011E390)
+# 2026-08-11: movie_slice_load — the movie-streamer flag + its typed struct view
+# (D_801386B0_v alias): both reached %hi/%lo by the target
+D_801386E8
+D_801386B0_v

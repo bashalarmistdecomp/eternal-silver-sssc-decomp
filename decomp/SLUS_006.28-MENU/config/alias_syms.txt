@@ -1,0 +1,2 @@
+/* Linker-visible symbol definitions added AFTER the splat split
+   (station-tools appends here). Empty at the split. */

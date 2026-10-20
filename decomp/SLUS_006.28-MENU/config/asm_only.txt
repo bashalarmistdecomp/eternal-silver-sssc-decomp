@@ -1,0 +1,23 @@
+# Functions that were ASSEMBLY in the original program. GENERATED: never edit a row.
+#
+# Each function below carries evidence, measured on the expected image, that it was never C:
+# an instruction or a register use the C compiler never emits, or membership of a pinned SDK
+# object file that holds such a function (the evidence kinds of
+# docs/spec/code/hand-assembly.md). It stays an INCLUDE_ASM stub for good: no C
+# body is taken for it, and it is counted on its own line, outside the work
+# still to do. A function with NO row here is conversion work, however small or
+# odd it looks.
+#
+# The list is generated and checked by station-tools, a custom decomp toolkit to be released later.
+# A row appears or goes only when the evidence does: the tool's rules or the pinned SDK
+# objects (config/object_pins.txt, the `object-member` kind) changed, or a function with
+# evidence was split, merged or renamed. Never add a row to take a function out of a queue.
+#
+# program        SLUS_006.28-MENU
+# image sha256   0fc09d66f7faf118a5be5e10001f130c989ed024d6595738a62914c02753ffd5
+# pinned objects none
+# functions      2
+#
+# function     address   evidence
+DecDCTvlcSize  80197320  insn:addi
+DecDCTvlc  80197350  insn:add x22, insn:addi x31, insn:sub x2, insn:mfc0, insn:mtc0

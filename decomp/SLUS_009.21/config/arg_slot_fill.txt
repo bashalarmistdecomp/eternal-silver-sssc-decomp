@@ -1,0 +1,5 @@
+# Functions whose empty `jal` delay slot takes the ARGUMENT SETUP rather
+# than the instruction immediately before the branch. Our cc1 hoists the
+# constant arg setup to the top of the function; the original's emitted it
+# next to its jal. Not reachable from C. See delayfill.arg_slot_fill.
+StClearRing          # StClearRing

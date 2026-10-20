@@ -1,0 +1,72 @@
+# Functions whose epilogue puts `addiu $sp` in the LOAD delay slot and
+# leaves the RETURN slot nop  (delayfill.load_slot_epilogue).
+#
+# MIPS I has a load delay slot, so something must sit between `lw $ra` and
+# `jr $ra`. When $ra is the epilogue's ONLY restore, the stack adjust is
+# the sole candidate and the branch slot is left nop; our toolchain picks
+# the other legal ordering by default.
+#
+# PER FUNCTION on purpose. The original compiler emitted BOTH orderings
+# for locally identical code (_spu_FiDMA vs sound_noise_step: same shape,
+# same 0x18 frame, opposite choice), so this can never be generalised to a
+# file or an object.
+#
+# Every name below is MEASURED from that function's own target asm
+# (by station-tools, to be released later), not inferred from a neighbour.
+# Harmless where it does not apply: the swap only fires on an exact
+# `lw $ra / nop / jr $ra / addiu $sp` epilogue, and `make` is the judge.
+PadStop
+func_8011F338
+ResetCallback
+InterruptCallback
+DMACallback
+VSyncCallback
+VSyncCallbacks
+StopCallback
+RestartCallback
+startIntrVSync
+startIntrDMA
+StopPAD
+_addque
+set_alarm
+func_80123CA4
+_GPU_ResetCallback
+kanjitrans
+hankanjitrans
+StSetRing
+func_801250A0
+func_8012512C
+CdDataCallback
+CdDataSync
+CD_initintr
+CD_init
+func_801282B4
+StClearRing
+StUnSetRing
+data_ready_callback
+StCdInterrupt
+DecDCTin
+DecDCTinSync
+DecDCToutSync
+DecDCTinCallback
+DecDCToutCallback
+MDEC_rest
+MDEC_in_sync
+MDEC_out_sync
+func_80129990
+DsDataCallback
+SpuStart
+_spu_FiDMA
+_SpuDataCallback
+SpuSetNoiseVoice
+SpuSetTransferStartAddr
+PadGetState
+_padIsVsync
+_padStopCom
+_padClrIntSio0
+_padSendAtLoadInfo
+func_8012DB8C
+func_8012E264
+func_8012F254
+printf
+_putchar_flash

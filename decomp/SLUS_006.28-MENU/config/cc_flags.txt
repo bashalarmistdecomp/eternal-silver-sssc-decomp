@@ -1,0 +1,7 @@
+# Per-file cc1 flags (compile.py extra_cc1_flags). The whole overlay was
+# compiled -G0: no instruction in MENU.BIN names $gp, and every boot-EXE
+# global it reads (g_PadButtons, g_MovieSkipAllowed — gp-relative in the boot EXE)
+# is reached %hi/%lo here. A later -G overrides the command's -G8.
+movie.c  -G0
+libpress_libpress.c  -G0
+libpress_vlc.c  -G0

@@ -1,0 +1,11 @@
+# Functions compiled with -fno-delayed-branch individually (second cc1 pass,
+# block splice). See recipe/delayfill.py, splice.
+# CdComstr (CdComstr) and CdIntstr (CdIntstr) were listed here
+# until 2026-10-11. Both are in cc272.txt, and their bytes need the delay
+# slot after `j` FILLED. The listing had no effect under 2.7.2 until the
+# cc272 passes were made to honour this file; from then each came out
+# 4 bytes long and `make` mismatched.
+# --- 2026-08-10 sweep: ndb beat both plain and @cc272 on these
+FntFlush          # FntFlush           65/199
+CD_initvol          # CD_initvol         26/60
+_spu_pitch2note          # _spu_pitch2note    20/76

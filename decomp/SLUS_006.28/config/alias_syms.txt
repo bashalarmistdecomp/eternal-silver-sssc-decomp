@@ -1,0 +1,60 @@
+/* Linker-visible symbol definitions added AFTER the splat split.
+   symbol_addrs.txt feeds splat (and the symbol tooling); the
+   LINK resolves names only through the Makefile's -T scripts, so an
+   alias-pair symbol (D_xxx_blk / _s / _h) — or any post-split name with
+   no glabel — must ALSO be defined here or every reference dies at
+   `undefined reference`. station-tools (to be released later) appends here
+   when nothing else defines the name; hand-edits
+   are fine (ld assignment syntax, one per line). */
+g_ScreenDrawAreaX_blk = 0x800B8674;
+g_PadActuatorLevels_blk = 0x800B8698;
+g_PadActuatorIntervals_blk = 0x800B86A8;
+g_PadActuatorWays_blk = 0x800B86AC;
+g_PadActuatorUpperLimits_blk = 0x800B86B0;
+g_PadActuatorLowerLimits_blk = 0x800B86B4;
+g_PadActuatorSteps_blk = 0x800B86B8;
+g_PadActuatorCountdowns_blk = 0x800B86BC;
+g_BtlActingSpellList_blk = 0x800B87A0;
+g_CardDirEntryCount_blk = 0x800B8AB0;
+g_MessageFaceFirst_blk = 0x800B8B74;
+g_MessageFaceSecond_blk = 0x800B8B76;
+g_MapCol_blk = 0x800B8CF0;
+D_800B8F89_s = 0x800B8F89;
+g_MenuPage_h = 0x800B8F64;
+g_MenuCommands_blk = 0x800B8F94;
+g_MenuOptionRow_blk = 0x800B8F32;
+g_MapPartyBoxDx_blk = 0x800B8C28;
+g_MoveChrMixGroup1Bits_blk = 0x800B8E48;
+g_MapPartyRingHead_blk = 0x800B8EAE;
+g_MenuMemberPickCursor_blk = 0x800B8EF0;
+D_800B8EF4_blk = 0x800B8EF4;
+g_MenuItemCursor_blk = 0x800B8F1C;
+g_MenuMemberCursor_blk = 0x800B8F58;
+g_MenuPresetMemberCursor_blk = 0x800B8F80;
+g_MapObjectCursor_blk = 0x800B8FD0;
+g_PacketWritePointer = 0x1F80004C;
+g_PacketOtBase = 0x1F800040;
+g_MapFadeState_s = 0x800B8DF9;
+g_BtlWalkRingWidth = 0x800B8C9E;
+g_ShopCursors_s = 0x800B87B0;
+g_ShopItemFlags = 0x800B8DD9;
+D_800B6038 = 0x800B6038;
+D_800EAD40 = 0x800EAD40;
+D_800EAD44 = 0x800EAD44;
+D_800EAD50 = 0x800EAD50;
+D_800EAD54 = 0x800EAD54;
+D_800EAD60 = 0x800EAD60;
+D_800EAD70 = 0x800EAD70;
+D_800EADB8 = 0x800EADB8;
+D_800EAE00 = 0x800EAE00;
+D_800EAFE0 = 0x800EAFE0;
+D_800EAFE4 = 0x800EAFE4;
+g_ChrRecords_s = 0x800B8BE4;
+g_ShopBuySell = 0x800B87AD;
+g_BgSecondPacketCol = 0x1F800048;
+/* The two addresses Sony's start-up code refers to that nothing else in the tree names: the
+   start of .sbss and the word the game sets its stack size in. The from-sdk stub of
+   __SN_ENTRY_POINT points two of its fields at them (make CODE=sdk). */
+D_800B8714 = 0x800B8714;
+D_800B8820 = 0x800B8820;
+_spu_rev_attr = 0x800B7B50;

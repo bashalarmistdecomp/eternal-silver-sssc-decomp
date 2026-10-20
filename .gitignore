@@ -1,0 +1,16 @@
+# The game's code. Yours to supply (recipe/extract.py); never committed.
+decomp/*/expected/
+
+# The toolchain: compilers, assembler and Sony's SDK headers, fetched and
+# built by recipe/toolchain.sh.
+/toolchain/
+
+# Build output
+/build/
+
+# Working notes and reviews; never committed.
+/scratch/
+
+__pycache__/
+*.py[cod]
+.DS_Store

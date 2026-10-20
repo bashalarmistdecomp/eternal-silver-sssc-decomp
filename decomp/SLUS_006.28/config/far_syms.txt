@@ -1,0 +1,131 @@
+# Symbols that live in regular .data/.bss despite being <=8 bytes.
+# For these, the original code uses lui $at + %hi/%lo instead of %gp_rel.
+# recipe/compile.py strips their `.extern` directives so GAS matches that.
+# Declare them as plain scalars in C (extern u8 D_xxx;) — the strip does
+# the rest. Add symbols here when asmdiff shows gp_rel built vs $at target.
+g_MoveChrViewFollow@menu_nowalk.c   # MenuNoWalkClose: g_MoveChrViewFollow = 1 (verified reproduces lui $at + sb) [scoped 2026-10-03: script_run.c and lns_intp.c read it %gp_rel]
+g_MoveChrViewFollow@menu_run.c   # MenuNoWalkClose: g_MoveChrViewFollow = 1 (verified reproduces lui $at + sb) [scoped 2026-10-03: script_run.c and lns_intp.c read it %gp_rel]
+g_MoveChrViewFollow@movie.c   # MenuNoWalkClose: g_MoveChrViewFollow = 1 (verified reproduces lui $at + sb) [scoped 2026-10-03: script_run.c and lns_intp.c read it %gp_rel]
+g_MoveChrViewFollow@script_run.c   # MenuNoWalkClose: g_MoveChrViewFollow = 1 (verified reproduces lui $at + sb) [scoped 2026-10-03: script_run.c and lns_intp.c read it %gp_rel]
+g_MoveChrViewFollow@lns_intp.c   # MenuNoWalkClose: g_MoveChrViewFollow = 1 (verified reproduces lui $at + sb) [scoped 2026-10-03: script_run.c and lns_intp.c read it %gp_rel]
+g_CardPort@menu_card.c   # MenuSaveOpen: read as scalar (lui $a3 + lw), no CSE
+g_CardPort@start_screen.c   # its 4 accesses need far too; omitting this shrank rendering3 12 bytes
+g_BtlTargetSlot@menu_use.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_command.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_enemy.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_action.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_status.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_hit.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_attack.c
+g_BtlTargetSlot@btl_row.c
+g_BtlTargetSlot@btl_target.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_move.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_slot.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_fall.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_pick.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_acting.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_show.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_item.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_choice.c
+g_BtlTargetSlot@btl_walk.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_outcome.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_plan.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_weapon.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlTargetSlot@btl_boss.c   # MenuUseTargetRun: g_BtlTargetSlot = g_MenuUseTargetId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_end.c and btl_round.c read it %gp_rel]
+g_BtlActingSlot@menu_use.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_show_frame.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_command.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_enemy.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_action.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_hit.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_attack.c
+g_BtlActingSlot@btl_row.c
+g_BtlActingSlot@btl_target.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_move.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_slot.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_fall.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_pick.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_acting.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_show.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_item.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_window.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_message.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_choice.c
+g_BtlActingSlot@btl_effect.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_walk.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_outcome.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_plan.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_menu.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActingSlot@btl_boss.c   # MenuUseActionSet: g_BtlActingSlot = g_MenuUseUserId (lui $at + sb) [scoped 2026-10-03: btl_run.c and chr_levelup.c, btl_round.c read it %gp_rel]
+g_BtlActionKind   # MenuUseActionSet: mode byte, 3 or 4 (lui $at + sb)
+g_BtlActionNumber   # MenuUseActionSet: portrait/frame byte (lui $at + sb)
+D_800B8E0C@menu_list.c   # MenuUseMoviePlay: cleared via lui $at + sb [scoped 2026-10-03: map_attribute.c read it %gp_rel]
+g_MapBgChangeNumber@menu_list.c   # MenuUseMoviePlay: read (lui $rt + lbu) then cleared via lui $at + sb [scoped 2026-10-03: map_attribute.c read it %gp_rel]
+g_PadActuatorList@map_look.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@map_btl.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@overlay.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_enemy.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_frame.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_acting.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_show.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_item.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@map_fade.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_run.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_weapon.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@btl_boss.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@map_change.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorList@lns_intp.c   # MapObjectTowardWalk: one-shot init guard/pointer slot (lui + lw / lui $at + sw) [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@map_look.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@map_btl.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@overlay.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_enemy.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_frame.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_acting.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_show.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_item.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@map_fade.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_run.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_weapon.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@btl_boss.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@map_change.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorRestFlags@lns_intp.c   # MapObjectTowardWalk: init writes 0x3F via lui $at + sb [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@map_look.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@map_btl.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@overlay.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_enemy.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_frame.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_acting.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_show.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_item.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@map_fade.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_run.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_weapon.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@btl_boss.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@map_change.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_PadActuatorListWait@lns_intp.c   # MapObjectTowardWalk: init clears via lui $at + sh [scoped 2026-10-03: pad_update.c read it %gp_rel]
+g_MenuOptions   # MenuOptionOpen: 7-byte block copied via lui/%hi+%lo (small by size, far by use)
+
+# --- TU-scoped (see load_far_syms in recipe/compile.py) ---
+# The battle segment was two TUs in the first split.  These globals were
+# small/gp in the first split's battle.c but reached lui $at + %hi/%lo in
+# the first split's battle_b.c (now map_btl.c, map_look.c, menu_list.c), so
+# each entry applies to the file it names only -- a global entry would break
+# the gp side.
+g_MenuRequest  @menu_list.c   # MenuUseMapRow2Run / MenuUsePlaceNameRun: sw via lui $at
+g_MenuPage  @menu_list.c   # MenuUseEnd: sw via lui $at (word store; TU-A treats it u16)
+g_MenuPage  @map_btl.c   # MenuUseEnd: sw via lui $at (word store; TU-A treats it u16)
+g_MenuRecords  @menu_list.c   # window-block pointer; GAS macro gives lui $r + lw $r
+g_MenuRenderEntries  @menu_list.c   # entity pointer; lui $r + lw $r (GAS macro form)
+g_MenuShapes  @menu_list.c   # entity pointer
+g_MenuMemberCursor  @menu_list.c   # u16 read via lui $a0 + lhu $a0
+g_MenuBackOutLatch  @menu_list.c   # lui $at store / lui $r load
+g_MenuSoundRequest  @menu_list.c   # MenuUseListRun/MenuUsePlaceNameRun: lui $at store, lui $r load
+g_MenuBackOutPattern  @menu_list.c   # MenuUseListRun: sw via lui $at
+g_MenuKeptIds  @menu_list.c   # MenuUsePlaceNameRun: lw via lui $r (pointer slot)
+g_PlayTimeMinutes  @menu_card.c   # MenuLoadStep/MenuCardListDisp: lui %hi + lhu %lo despite being in the gp window
+g_MenuOnePageRunning  @map_btl.c   # sw via lui $at/%lo in MapBtlRun; menu_card.c and menu_nowalk.c reaches it gp (MenuSaveRun/73054/74ADC + converted)
+g_MenuMemberCursor_blk  @menu_run.c   # alias pair: address-of far, scalar stays gp
+g_ScreenDrawAreaX_blk  @frame.c   # alias pair: address-of far, scalar stays gp
+g_MapObjectCursor_blk  @map_touch.c   # alias pair: address-of far, scalar stays gp
+g_MapSpriteDataMarks  @map_sprite.c   # TU-D reaches it via lui %hi + %lo (sw/lw); lns_intp.c keeps the gp side
+g_StartFirstStep@main.c   # main: lui $at + sw

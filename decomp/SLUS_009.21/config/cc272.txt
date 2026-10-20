@@ -1,0 +1,39 @@
+# Functions compiled by GCC 2.7.2 instead of 2.8.1 — the PSY-Q LIBRARY
+# compiler. Tell: on a leaf, 2.8.1 duplicates `jr $ra` into every arm while
+# 2.7.2 keeps one and jumps to it, which is what the SDK objects have.
+# No 2.8.1 flag reproduces it. See docs/spec/code/subsystems/psyq/codegen.md,
+# "Telling the compilers apart".
+# Per function, never per file: a split TU mixes library objects with
+# converted game functions that need 2.8.1.
+_spu_FsetRXX          # _spu_FsetRXX
+CdComstr          # CdComstr
+CdIntstr          # CdIntstr
+# --- 2026-08-10 four-way sweep of the EXACT library band: entries below are
+# functions where @cc272 beat plain 2.8.1 on the existing seed. Still in asm,
+# so they do not affect `make`; they make every tool score them correctly.
+FntLoad          # FntLoad            35/40
+DrawOTagEnv          # DrawOTagEnv        52/54
+LoadImage2          # LoadImage2         28/59
+StoreImage2          # StoreImage2        56/59
+DrawOTag2          # DrawOTag2          26/63
+CdControl          # CdControl          34/79
+CdControlF          # CdControlF         38/77
+CD_sync          # CD_sync            63/160
+CD_ready          # CD_ready           86/178
+CD_cw          # CD_cw             102/259
+CD_initintr          # CD_initintr        13/19
+StClearRing          # StClearRing        23/24
+data_ready_callback          # data_ready_callback 18/35
+StFreeRing          # StFreeRing         31/44
+_SpuInit          # _SpuInit           34/58
+_spu_t          # _spu_t             51/160
+_spu_FsetRXXa          # _spu_FsetRXXa      29/41
+_spu_gcSPU          # _spu_gcSPU         42/192
+_SpuSetAnyVoice          # _SpuSetAnyVoice    72/176
+SpuSetKey          # SpuSetKey          27/112
+_spu_note2pitch          # _spu_note2pitch    18/52
+PadInfoAct          # PadInfoAct         41/53
+PadEnableCom          # PadEnableCom       29/70
+_padIntPad          # _padIntPad         54/100
+_putchar          # _putchar           33/63
+_spu_FgetRXXa          # _spu_FgetRXXa  12/15 -> 14/15 (after polarity fix)

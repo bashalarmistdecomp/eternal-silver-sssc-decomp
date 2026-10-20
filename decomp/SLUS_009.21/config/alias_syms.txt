@@ -1,0 +1,4 @@
+/* Linker-visible symbol definitions added AFTER the splat split
+   (alias pairs from station-tools) - none yet. */
+D_801336C8_s = 0x801336C8;
+D_801386B0_v = 0x801386B0;
