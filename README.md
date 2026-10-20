@@ -176,9 +176,11 @@ brought up to date from that repository's side.
 
 ## Where this came from
 
-The work was done between March and October 2026 in a private repository
-that also held the tools used to write the C, the applications built on it
-and the asset research. This repository starts from that one's state on
+The work was done in a private repository that also held the tools used to
+write the C, the applications built on it and the asset research. That
+repository began in March 2026 with an asset viewer; the decompilation
+entered it on 23 July with its first functions already matched, and went on
+there until October. This repository starts from that one's state on
 2026-10-11 and takes only what is listed above; it has no history before
 that. [HISTORY.md](HISTORY.md) is the timeline reconstructed from the old
 one.

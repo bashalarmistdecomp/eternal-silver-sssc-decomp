@@ -1,0 +1,11 @@
+# How GitHub counts the languages of this repository.
+
+# The .s files are written by splat and station-tools: labels and .incbin
+# lines that read the original program's bytes at build time, no code.
+decomp/*/asm/** linguist-generated
+decomp/*/from-sdk/asm/** linguist-generated
+
+# The headers are C (map.h has a field named `class`), and the .inc files
+# are assembler macros.
+*.h linguist-language=C
+*.inc linguist-language=Assembly
