@@ -31,23 +31,24 @@ for the first and last resources of the run:
 | Resource | Sector | Size | Bytes | Notes |
 |-----|--------|------|-------|-------|
 | `0x1EC` | 15598 | 3 | 6KB | |
-| `0x1ED` | 15601 | 11 | 22KB | |
-| `0x1EE` | 15612 | 11 | 22KB | |
+| `0x1ED` | 15601 | 11 | 22KB | first page inflates to 65,536 bytes |
+| `0x1EE` | 15612 | 11 | 22KB | first page inflates to 65,536 bytes |
 | `0x1EF` | 15623 | 9 | 18KB | first page inflates to 65,536 bytes |
 | `0x1F0` | 15632 | 40 | 80KB | first page inflates to 65,536 bytes |
 | `0x1F1` | 15672 | 44 | 88KB | first page inflates to 65,536 bytes |
 | ... | ... | ... | ... | |
 | `0x248` | 17532 | 16 | 32KB | first page inflates to 65,536 bytes |
-| `0x249` | 17548 | 12 | 24KB | the last set; the bromides follow at 17560 |
+| `0x249` | 17548 | 12 | 24KB | first page inflates to 65,536 bytes; the last set; the bromides follow at 17560 |
 
-The 47 sets, by first sector, whose first texture page inflates to exactly
+The 69 sets, by first sector, whose first texture page inflates to exactly
 65,536 bytes (a full 256-line page):
-15623, 15632, 15672, 15753, 15793, 15819, 15847, 15875, 15915, 15949, 15975, 16083, 16131, 16163, 16204, 16298, 16343, 16696, 16877, 16922, 16946, 16967, 16981, 16999, 17009, 17030, 17045, 17067, 17086, 17118, 17163, 17206, 17223, 17263, 17274, 17319, 17345, 17363, 17390, 17403, 17411, 17429, 17462, 17471, 17480, 17501, 17532
+15575, 15587, 15601, 15612, 15623, 15632, 15672, 15716, 15753, 15793, 15819, 15847, 15875, 15915, 15949, 15975, 16024, 16083, 16096, 16109, 16131, 16163, 16187, 16204, 16236, 16256, 16298, 16343, 16412, 16437, 16480, 16535, 16558, 16603, 16649, 16696, 16745, 16790, 16842, 16855, 16877, 16946, 16967, 16981, 16999, 17009, 17030, 17045, 17067, 17086, 17118, 17163, 17206, 17223, 17263, 17274, 17319, 17345, 17363, 17390, 17403, 17411, 17429, 17462, 17471, 17480, 17501, 17532, 17548
 
 The other sets are not a different kind of block: a set has 0 to 5 pages,
 and a page stream may hold fewer than 256 lines (98 of the 227 pages in the
 97 sets do), so a set with no page, or whose first page is short, is
-missing from that list.
+missing from that list: 2 sets have no page and 26 a short first page.
+No set has a full page after a short first one.
 
 ## A set's layout
 

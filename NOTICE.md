@@ -23,6 +23,9 @@ The C's comments, the notes in the symbol registers
 (`decomp/<serial>/config/symbol_addrs.txt`) and the specification quote short
 messages the programs print: debug and error texts of the game and of Sony's
 libraries. Each is quoted where it is the evidence for a name or a reading.
+In the same way they state short values from the game's tables (a spell's
+row, a speed table, a party order), as numbers or a few bytes, where those
+values are the evidence for a reading.
 
 ## What the licence covers
 

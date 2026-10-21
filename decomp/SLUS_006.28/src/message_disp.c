@@ -273,9 +273,11 @@ void MessageStringControlRun(s32 code) {
    byte stream at p until 0xFF. A 0x0E byte opens a run, ended by 0x00:
    bytes below 0x5C are characters (b + 0x1F), bytes from 0x5C up index the
    fragment dictionary (font_string_word_get; 0xFD/0xFE extend the index). Six
-   characters are controls: '%' newline, '@' pause, '\\' close (inside a
-   fragment it also ends the message), '$' newline + close and the end of
-   the message, '*' newline + wait, '^' wait. Any other byte is a 16-bit
+   characters are controls (meanings as the message window reads them):
+   '%' 0xFF00 wait for a press, '@' 0xFF02 next row, '\\' 0xFF03 close
+   (inside a fragment it also ends the message), '$' 0xFF00 + 0xFF03 wait,
+   close and the end of the message, '*' 0xFF00 + 0xFF01 wait, then a new
+   page, '^' 0xFF01 new page. Any other byte is a 16-bit
    code (g_FontStringCodes[b] below 0xD6, else b and the next byte): above 0xEFFF
    it goes to emit_ctl, otherwise to emit_char (0xD640..0xEFFF less
    0x5500). Returns a pointer to the 0xFF it stopped on, or to the run

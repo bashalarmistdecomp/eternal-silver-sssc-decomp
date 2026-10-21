@@ -155,6 +155,6 @@ handlers say how each payload is unpacked.
 | Attribute-plane blocks | command 6 (`resource_bg_attribute_set`), the payload copied as it is | LZ, a block at a time | 0x200 B per block |
 | Icons | inside the string block, from `+0x899C` | LZ (`IconImageLoad`) | |
 | FACE portraits | FACE blocks | deflate | 20,480 B (5 × 64×64) |
-| Sprite texture pages | Sprite block sub-block 2 | deflate | 65,536 B |
+| Sprite texture pages | a map object set's header words `[2..]`, one per page (`sprite_page_list_load`) | deflate | 0x100 B a line, up to 256 lines (65,536 B); 98 of the 227 pages are shorter |
 | EXE payload | SLUS_006.28 | LZ (the loader's copy of `lz_unpack`) | 690,176 B |
 | Orphan entity data | Orphan LZ sectors | LZ | 64B–27KB |
